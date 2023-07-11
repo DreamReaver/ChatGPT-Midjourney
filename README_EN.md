@@ -1,27 +1,17 @@
 <div align="center">
 
-<h1 align="center">ChatGPT-Midjourney</h1>
+<h1 align="center">🍭 ChatGPT-Midjourney</h1>
 
-[中文](./README.md) | English
+[中文](./README.md) | English | [日本語](./README_JA.md)
 
 One-click free deployment of your private ChatGPT+Midjourney web application (based on [ChatGPT-Next-Web](https://github.com/Yidadaa/ChatGPT-Next-Web) development)
 
-<a target="_blank" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLicoy%2FChatGPT-Midjourney&env=OPENAI_API_KEY&env=MIDJOURNEY_PROXY_URL&env=CODE&project-name=chatgpt-midjourney&repository-name=ChatGPT-Midjourney">
-  <img src="https://img.shields.io/badge/Vercel-Deploy-00CCCC.svg?logo=vercel" alt="Deploy with Vercel">
-</a>
-<a target="_blank" href="https://github.com/novicezk/midjourney-proxy/blob/main/docs/railway-start.md">
-  <img src="https://img.shields.io/badge/MidjourneyProxy-RailwayDeploy-009900.svg?logo=railway" alt="Deploy with Railway">
-</a>
-<br>
-<a target="_blank" href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=gAGpNxOKdRB3L_IiHWAfT4MUQzgBOor-&authKey=Ty8WQgZFub8W1EsG3LQE2B3xxRRBzD0Rj1rPyRVFdT6IqnJgGcpPZB5l8ZVJTB1n&noverify=0&group_code=849273126">
-  <img src="https://img.shields.io/badge/QQ-Group-FF3333.svg?logo=tencentqq" alt="QQ Group">
-</a>
-<a target="_blank" href="https://t.me/gptmj">
-  <img src="https://img.shields.io/badge/TG-@GPTMJ-29a9ec.svg?logo=Telegram" alt="Telegram Group">
-</a>
-<br>
+[QQ Group](https://github.com/Licoy/ChatGPT-Midjourney/issues/30) | [PRO VERSION](https://github.com/Licoy/ChatGPT-Midjourney-Pro)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLicoy%2FChatGPT-Midjourney&env=OPENAI_API_KEY&env=MIDJOURNEY_PROXY_URL&env=CODE&project-name=chatgpt-midjourney&repository-name=ChatGPT-Midjourney)
+[![Deploy with Vercel](https://img.shields.io/badge/Vercel-Deploy-00CCCC.svg?logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLicoy%2FChatGPT-Midjourney&env=OPENAI_API_KEY&env=MIDJOURNEY_PROXY_URL&env=CODE&project-name=chatgpt-midjourney&repository-name=ChatGPT-Midjourney)
+[![Deploy with Railway](https://img.shields.io/badge/MidjourneyProxy-RailwayDeploy-009900.svg?logo=railway)](https://github.com/novicezk/midjourney-proxy/blob/main/docs/railway-start.md)
+
+[![WordPress+ChatGPT支持](https://img.shields.io/badge/WordPress-AIGC%20Deploy-red.svg?logo=wordpress&logoColor=red)](https://github.com/Licoy/wordpress-theme-puock)
 
 ![Main interface](./docs/images/cover.png)
 
@@ -29,13 +19,14 @@ One-click free deployment of your private ChatGPT+Midjourney web application (ba
 
 ## Support
 - [x] All features of the original `ChatGPT-Next-Web`
-- [x] midjourney `imagin`
+- [x] midjourney `imagine`
 - [x] midjourney `upscale` Zoom in
 - [x] midjourney `variation`
 - [x] midjourney `describe`
 - [x] midjourney `blend`
 - [x] midjourney pad figure
 - [x] Drawing progress percentage, live image display
+- [ ] Supports midjournal API on its own
 
 ## Parameter Description
 ### MIDJOURNEY_PROXY_URL
@@ -47,20 +38,22 @@ MIDJOURNEY_PROXY_URL=http://yourip:port
 
 ![mj-6](./docs/images/mj-6.png)
 
-###CODE
-Set the access password on the page to prevent it from being easily used by others to consume the balance
+### MIDJOURNEY_PROXY_API_SECRET
+(optional) The API request key of `midjourney-proxy`, to prevent malicious calls from others, can be configured in environment variables.
+
+### CODE
+(optional) Set the access password on the page to prevent it from being easily used by others to consume the balance
 
 ## Deployment
 ### ChatGPT-Midjourney front-end deployment
 #### Docker
 ```shell
-docker pull licoy/chatgpt-midjourney:v1.3.0
 docker run -d -p 3000:3000 \
     -e OPENAI_API_KEY="sk-xxx" \
     -e CODE="123456" \
     -e BASE_URL="https://api.openai.com" \
     -e MIDJOURNEY_PROXY_URL="http://ip:port" \
-    licoy/chatgpt-midjourney:v1.3.0
+    licoy/chatgpt-midjourney:v1.3.9
 ```
 #### Vercel
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLicoy%2FChatGPT-Midjourney&env=OPENAI_API_KEY&env=MIDJOURNEY_PROXY_URL&env=CODE&project-name=chatgpt-midjourney&repository-name=ChatGPT-Midjourney)
@@ -76,7 +69,6 @@ npm run start // #or start in development mode: npm run dev
 #### Docker
 - Run `midjourney-proxy` (Midjourney API service, for more parameter configuration, please refer to: [midjourney-proxy](https://github.com/novicezk/midjourney-proxy))
 ```shell
-docker pull novicezk/midjourney-proxy:2.1.6
 docker run -d --name midjourney-proxy \
   -p 8080:8080 \
   -e mj.discord.guild-id=xxx \
@@ -84,7 +76,7 @@ docker run -d --name midjourney-proxy \
   -e mj.discord.user-token=xxx\
   -e mj.discord.bot-token=xxx\
   --restart=always \
-  novicezk/midjourney-proxy:2.1.6
+  novicezk/midjourney-proxy:2.3.5
 ```
 #### Railway
 > Railway is a platform that provides flexible deployment solutions. The service is overseas, which is convenient for MidJourney to call.
